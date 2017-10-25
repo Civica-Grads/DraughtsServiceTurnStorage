@@ -30,7 +30,7 @@ public class TurnStorageController {
     	// Sample moves
     	MoveRecord moveRecord = new MoveRecord(new Position(0,0), new Position(3,3),
     			 Colour.BLACK, CounterType.KING, true);
-    	MoveRecord moveRecord2 = new MoveRecord(new Position(0,0), new Position(7,7),
+    	MoveRecord moveRecord2 = new MoveRecord(new Position(3,3), new Position(7,7),
    			 Colour.BLACK, CounterType.KING, true);
     	
     	// add sample moves to turn record
