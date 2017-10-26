@@ -16,11 +16,7 @@ public class TurnStorageMicroServiceApplication {
         SpringApplication.run(TurnStorageMicroServiceApplication.class, args);
     }
     
-    
-    @Bean
-    ArrayList<TurnRecord> turnRecord(){
-        return new ArrayList<TurnRecord>();
-    }
+
    
     
     
