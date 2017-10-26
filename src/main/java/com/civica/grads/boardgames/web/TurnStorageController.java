@@ -19,13 +19,19 @@ public class TurnStorageController {
 
     
     @Autowired
-    private TurnRecord turnRecord;
+    private ArrayList<TurnRecord> turnRecords;
     
     
     @RequestMapping("/")
     @ResponseBody
-    TurnRecord printTurnRecords() throws GameException {
+    ArrayList<TurnRecord> printTurnRecords() throws GameException {
     	
+    	TurnRecord turnRecord = new TurnRecord();
+    	
+    	
+    	/**
+    	 * Turn record 1
+    	 */
     	
     	// Sample moves
     	MoveRecord moveRecord = new MoveRecord(new Position(0,0), new Position(3,3),
@@ -36,6 +42,21 @@ public class TurnStorageController {
     	// add sample moves to turn record
     	turnRecord.addMoveRecord(moveRecord);
     	turnRecord.addMoveRecord(moveRecord2);
+    	
+    	/** 
+    	 * Turn record 2
+    	 */
+    	
+    	TurnRecord turnRecord2 = new TurnRecord();
+    	// Sample move
+    	MoveRecord moveRecord3 = new MoveRecord(new Position(2,5), new Position(3,6),
+    			Colour.WHITE, CounterType.NORMAL, false);
+    	
+    	turnRecord2.addMoveRecord(moveRecord3);
+    			
+    	
+    	turnRecords.add(turnRecord);
+    	turnRecords.add(turnRecord2);
     	
         //StringBuilder builder = new StringBuilder();
        // ArrayList<MoveRecord> moveRecords = turnRecord.getMoveRecordArrayList();
@@ -60,7 +81,7 @@ public class TurnStorageController {
         String pageHtml = String.format("<html><body><pre>%s</pre></body></html>", builder.toString());
         */
     	
-        return turnRecord;
+        return turnRecords;
     }
 
 }

@@ -1,6 +1,8 @@
 package com.civica.grads.boardgames.web;
 import com.civica.grads.boardgames.model.TurnRecord;
 
+import java.util.ArrayList;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,8 +18,8 @@ public class TurnStorageMicroServiceApplication {
     
     
     @Bean
-    TurnRecord turnRecord(){
-        return new TurnRecord();
+    ArrayList<TurnRecord> turnRecord(){
+        return new ArrayList<TurnRecord>();
     }
    
     
