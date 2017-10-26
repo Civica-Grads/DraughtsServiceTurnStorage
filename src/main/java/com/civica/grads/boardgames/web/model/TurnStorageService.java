@@ -106,26 +106,30 @@ public class TurnStorageService {
     }
 
 
+    public void addMovesToNewTurn(MoveRecord... moves) {
+        TurnRecord newTurn = new TurnRecord();
+        
+        for (MoveRecord move : moves) {
+            newTurn.addMoveRecord(move);
+        }
+        
+        add(newTurn);
+    }
+    
     private void addExampleTurnWithTwoMoves() {
         // Sample moves
-        TurnRecord turnRecord = new TurnRecord();
         MoveRecord moveRecord1 = new MoveRecord(new Position(0, 0), new Position(3, 3), Colour.BLACK, CounterType.KING, true);
         MoveRecord moveRecord2 = new MoveRecord(new Position(3, 3), new Position(7, 7), Colour.BLACK, CounterType.KING, true);
 
         // add sample moves to turn record
-        turnRecord.addMoveRecord(moveRecord1);
-        turnRecord.addMoveRecord(moveRecord2);
-        add(turnRecord);
-    }
+        addMovesToNewTurn(moveRecord1,moveRecord2);
+        }
 
     private void addExampleTurnWithOneMove() {
-        TurnRecord turnRecord = new TurnRecord();
-
-        // Sample move
+         // Sample move
         MoveRecord moveRecord = new MoveRecord(new Position(2, 5), new Position(3, 6), Colour.WHITE, CounterType.NORMAL, false);
 
-        turnRecord.addMoveRecord(moveRecord);
-        add(turnRecord);
+        addMovesToNewTurn(moveRecord);
     }
 
 }

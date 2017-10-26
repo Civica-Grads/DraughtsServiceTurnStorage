@@ -1,7 +1,11 @@
 
 package com.civica.grads.boardgames.web;
 
+import com.civica.grads.boardgames.enums.Colour;
+import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.GameException;
+import com.civica.grads.boardgames.model.MoveRecord;
+import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.TurnRecord;
 import com.civica.grads.boardgames.web.model.TurnStorageService;
 
@@ -24,4 +28,27 @@ public class TurnStorageController {
         return turnStorageService.getTurnRecords();
     }
 
+    
+    @RequestMapping("/add")
+    ArrayList<TurnRecord> addTurn(
+            @RequestParam int startPosX, 
+            @RequestParam int startPosY , 
+            @RequestParam                int newPosX, 
+            @RequestParam                int newPosY,
+            @RequestParam                String  counterColour,
+            @RequestParam                String  counterType,
+            @RequestParam                boolean counterTaken 
+            )
+    {
+        MoveRecord move = new MoveRecord(new Position(startPosX,startPosY),
+                new Position(newPosX,newPosY)  
+                , Colour.valueOf(counterColour), CounterType.valueOf(counterType), counterTaken);
+        
+        turnStorageService.addMovesToNewTurn(move);
+        
+        return turnStorageService.getTurnRecords();
+    }
+
+
+    
 }
