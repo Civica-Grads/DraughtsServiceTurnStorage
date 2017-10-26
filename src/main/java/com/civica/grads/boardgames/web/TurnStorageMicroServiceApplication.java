@@ -16,10 +16,10 @@ public class TurnStorageMicroServiceApplication {
     
     
     @Bean
-    TurnRecord turnRecord()
-    {
+    TurnRecord turnRecord(){
         return new TurnRecord();
     }
+   
     
     
 }

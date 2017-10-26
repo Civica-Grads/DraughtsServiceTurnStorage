@@ -1,6 +1,6 @@
 package com.civica.grads.boardgames.web;
 
-import com.civica.grads.boardgames.display.StringBufferBoardRenderer;
+
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.GameException;
@@ -24,7 +24,7 @@ public class TurnStorageController {
     
     @RequestMapping("/")
     @ResponseBody
-    String printTurnRecords() throws GameException {
+    TurnRecord printTurnRecords() throws GameException {
     	
     	
     	// Sample moves
@@ -37,9 +37,12 @@ public class TurnStorageController {
     	turnRecord.addMoveRecord(moveRecord);
     	turnRecord.addMoveRecord(moveRecord2);
     	
-        StringBuilder builder = new StringBuilder();
-        ArrayList<MoveRecord> moveRecords = turnRecord.getMoveRecordArrayList();
+        //StringBuilder builder = new StringBuilder();
+       // ArrayList<MoveRecord> moveRecords = turnRecord.getMoveRecordArrayList();
         
+        
+        /**
+         * string building commented out since we're using json
         builder.append("This turn contains following properties\n");
         
         for (int i=1;i<=moveRecords.size(); i++){
@@ -55,8 +58,9 @@ public class TurnStorageController {
         builder.append(turnRecord.getCountersTakenThisTurn());
         
         String pageHtml = String.format("<html><body><pre>%s</pre></body></html>", builder.toString());
-        
-        return pageHtml ;
+        */
+    	
+        return turnRecord;
     }
 
 }
