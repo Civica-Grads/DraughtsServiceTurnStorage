@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class TurnStorageController {
 
     @Autowired
@@ -48,6 +48,35 @@ public class TurnStorageController {
         
         return turnStorageService.getTurnRecords();
     }
+    
+    @RequestMapping("/addMove")
+    void addMoveToLastTurn(
+            @RequestParam int startPosX, 
+            @RequestParam int startPosY , 
+            @RequestParam                int newPosX, 
+            @RequestParam                int newPosY,
+            @RequestParam                String  counterColour,
+            @RequestParam                String  counterType,
+            @RequestParam                boolean counterTaken 
+            )
+    {
+    	MoveRecord move = new MoveRecord(new Position(startPosX,startPosY),
+                new Position(newPosX,newPosY)  
+                , Colour.valueOf(counterColour), CounterType.valueOf(counterType), counterTaken);
+    	turnStorageService.getTurnRecords()
+    	.get(turnStorageService.getTurnRecords().size() -1).addMoveRecord(move);
+    }
+    
+    
+    @RequestMapping("/clear")
+    void clearBoard(){
+    	turnStorageService.getTurnRecords().clear();
+    }
+    @RequestMapping("/get")
+    TurnRecord getTurn(@RequestParam int index){
+    	return turnStorageService.getTurnRecords().get(index);
+    }
+    
 
 
     
